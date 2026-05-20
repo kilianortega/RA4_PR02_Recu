@@ -4,32 +4,38 @@ import org.junit.jupiter.api.Test;
 class MagatzemTest {
 
     @Test
-    void testDegradacioNormal() {
-        Article[] art = { new Article("Poma", 10, 20) };
-        new Magatzem(art).actualitzarEstat();
-        assertEquals(9, art[0].diesPerVendre, "Els dies haurien de baixar en 1");
-        assertEquals(19, art[0].qualitat, "La qualitat hauria de baixar en 1");
+    void testArticuloNormal() {
+        Article poma = new Article("Poma", 10, 20);
+        Magatzem m = new Magatzem(new Article[]{poma});
+        m.actualitzarEstat();
+        assertEquals(9, poma.diesPerVendre);
+        assertEquals(19, poma.qualitat);
     }
 
     @Test
-    void testFormatgeMilloraAmbElTemps() {
-        Article[] art = { new Article("Formatge Gidurat", 10, 20) };
-        new Magatzem(art).actualitzarEstat();
-        assertTrue(art[0].qualitat > 20, "El formatge hauria d'augmentar la seva qualitat");
+    void testFormatgeGidurat() {
+        Article formatge = new Article("Formatge Gidurat", 10, 20);
+        Magatzem m = new Magatzem(new Article[]{formatge});
+        m.actualitzarEstat();
+        assertEquals(9, formatge.diesPerVendre);
+        assertEquals(21, formatge.qualitat);
     }
 
     @Test
-    void testEntradesCaducadesValenZero() {
-        Article[] art = { new Article("Entrades per al Concert del Trobador", 0, 40) };
-        new Magatzem(art).actualitzarEstat();
-        assertEquals(0, art[0].qualitat, "Després del concert la qualitat ha de ser 0");
+    void testMartellDeThor() {
+        Article martell = new Article("Martell de Thor (Llegendari)", 10, 80);
+        Magatzem m = new Magatzem(new Article[]{martell});
+        m.actualitzarEstat();
+        assertEquals(10, martell.diesPerVendre); // No cambia
+        assertEquals(80, martell.qualitat);       // No cambia
     }
 
     @Test
-    void testMartellDeThorImmutable() {
-        Article[] art = { new Article("Martell de Thor (Llegendari)", 10, 80) };
-        new Magatzem(art).actualitzarEstat();
-        assertEquals(80, art[0].qualitat, "La qualitat del Martell no ha de canviar");
-        assertEquals(10, art[0].diesPerVendre, "Els dies del Martell no han de canviar");
+    void testEntradesConcert() {
+        Article entrades = new Article("Entrades per al Concert del Trobador", 5, 20);
+        Magatzem m = new Magatzem(new Article[]{entrades});
+        m.actualitzarEstat();
+        assertEquals(4, entrades.diesPerVendre);
+        assertEquals(23, entrades.qualitat); // Sube +3 porque quedan <= 5 días
     }
 }
