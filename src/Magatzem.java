@@ -1,3 +1,67 @@
+public class Magatzem {
+    private Article[] articles;
+
+    public Magatzem(Article[] articles) {
+        this.articles = articles;
+    }
+
+    public void actualitzarEstat() {
+        for (Article article : articles) {
+            actualitzarArticle(article);
+        }
+    }
+
+    private void actualitzarArticle(Article article) {
+        if (article.nom.equals("Martell de Thor (Llegendari)")) {
+            return; 
+        }
+
+        article.diesPerVendre--;
+
+        switch (article.nom) {
+            case "Formatge Gidurat":
+                actualitzarFormatge(article);
+                break;
+            case "Entrades per al Concert del Trobador":
+                actualitzarEntrades(article);
+                break;
+            default:
+                actualitzarArticleNormal(article);
+                break;
+        }
+
+        if (article.qualitat > 50) article.qualitat = 50;
+        if (article.qualitat < 0) article.qualitat = 0;
+    }
+
+    private void actualitzarFormatge(Article article) {
+        article.qualitat++;
+        if (article.diesPerVendre < 0) {
+            article.qualitat++;
+        }
+    }
+
+    private void actualitzarEntrades(Article article) {
+        if (article.diesPerVendre < 0) {
+            article.qualitat = 0;
+        } else if (article.diesPerVendre <= 5) {
+            article.qualitat += 3;
+        } else if (article.diesPerVendre <= 10) {
+            article.qualitat += 2;
+        } else {
+            article.qualitat += 1;
+        }
+    }
+
+    private void actualitzarArticleNormal(Article article) {
+        article.qualitat--;
+        if (article.diesPerVendre < 0) {
+            article.qualitat--;
+        }
+    }
+}
+
+// 👇 ¡AQUÍ ESTÁ EL CULPABLE QUE BORRAMOS! 👇
 class Article {
     public String nom;
     public int diesPerVendre;
@@ -7,67 +71,5 @@ class Article {
         this.nom = nom;
         this.diesPerVendre = diesPerVendre;
         this.qualitat = qualitat;
-    }
-}
-
-class Magatzem {
-    private Article[] articles;
-
-    public Magatzem(Article[] articles) {
-        this.articles = articles;
-    }
-    public void actualitzarEstat() {
-        for (int i = 0; i < articles.length; i++) {
-        	if (articles[i].nom.equals("Martell de Thor (Llegendari)")) {
-        	    continue; 
-        	}
-            if (!articles[i].nom.equals("Formatge Gidurat")
-                    && !articles[i].nom.equals("Entrades per al Concert del Trobador")) {
-                if (articles[i].qualitat > 0) {
-                    if (!articles[i].nom.equals("Martell de Thor (Llegendari)")) {
-                        articles[i].qualitat = articles[i].qualitat - 1;
-                    }
-                }
-            } else {
-                if (articles[i].qualitat < 50) {
-                    articles[i].qualitat = articles[i].qualitat + 1;
-
-                    if (articles[i].nom.equals("Entrades per al Concert del Trobador")) {
-                        if (articles[i].diesPerVendre < 11) {
-                            if (articles[i].qualitat < 50) {
-                                articles[i].qualitat = articles[i].qualitat + 1;
-                            }
-                        }
-                        if (articles[i].diesPerVendre < 6) {
-                            if (articles[i].qualitat < 50) {
-                                articles[i].qualitat = articles[i].qualitat + 1;
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (!articles[i].nom.equals("Martell de Thor (Llegendari)")) {
-                articles[i].diesPerVendre = articles[i].diesPerVendre - 1;
-            }
-
-            if (articles[i].diesPerVendre < 0) {
-                if (!articles[i].nom.equals("Formatge Gidurat")) {
-                    if (!articles[i].nom.equals("Entrades per al Concert del Trobador")) {
-                        if (articles[i].qualitat > 0) {
-                            if (!articles[i].nom.equals("Martell de Thor (Llegendari)")) {
-                                articles[i].qualitat = articles[i].qualitat - 1;
-                            }
-                        }
-                    } else {
-                        articles[i].qualitat = articles[i].qualitat - articles[i].qualitat;
-                    }
-                } else {
-                    if (articles[i].qualitat < 50) {
-                        articles[i].qualitat = articles[i].qualitat + 1;
-                    }
-                }
-            }
-        }
     }
 }
