@@ -16,7 +16,6 @@ class Magatzem {
     public Magatzem(Article[] articles) {
         this.articles = articles;
     }
-
     public void actualitzarEstat() {
         for (int i = 0; i < articles.length; i++) {
         	if (articles[i].nom.equals("Martell de Thor (Llegendari)")) {
