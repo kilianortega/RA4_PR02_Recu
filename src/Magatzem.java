@@ -38,7 +38,6 @@ class Magatzem {
                                 articles[i].qualitat = articles[i].qualitat + 1;
                             }
                         }
-
                         if (articles[i].diesPerVendre < 6) {
                             if (articles[i].qualitat < 50) {
                                 articles[i].qualitat = articles[i].qualitat + 1;
