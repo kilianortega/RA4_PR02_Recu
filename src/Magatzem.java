@@ -19,6 +19,9 @@ class Magatzem {
 
     public void actualitzarEstat() {
         for (int i = 0; i < articles.length; i++) {
+        	if (articles[i].nom.equals("Martell de Thor (Llegendari)")) {
+        	    continue; 
+        	}
             if (!articles[i].nom.equals("Formatge Gidurat")
                     && !articles[i].nom.equals("Entrades per al Concert del Trobador")) {
                 if (articles[i].qualitat > 0) {
