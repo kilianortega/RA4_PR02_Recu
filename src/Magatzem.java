@@ -12,6 +12,7 @@ public class Magatzem {
     }
 
     private void actualitzarArticle(Article article) {
+        // PATRÓN: Replace Nested Conditional with Guard Clauses
         if (article.nom.equals("Martell de Thor (Llegendari)")) {
             return; 
         }
@@ -34,6 +35,7 @@ public class Magatzem {
         if (article.qualitat < 0) article.qualitat = 0;
     }
 
+    // PATRÓN: Extract Method (Métodos extraídos para limpiar el código)
     private void actualitzarFormatge(Article article) {
         article.qualitat++;
         if (article.diesPerVendre < 0) {
