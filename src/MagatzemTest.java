@@ -20,3 +20,5 @@ class MagatzemTest {
         assertEquals(21, formatge.qualitat);
     }
 }
+
+

@@ -72,5 +72,6 @@ class Article {
         this.nom = nom;
         this.diesPerVendre = diesPerVendre;
         this.qualitat = qualitat;
+        
     }
 }
