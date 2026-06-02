@@ -61,7 +61,6 @@ public class Magatzem {
     }
 }
 
-// 👇 ¡AQUÍ ESTÁ EL CULPABLE QUE BORRAMOS! 👇
 class Article {
     public String nom;
     public int diesPerVendre;
