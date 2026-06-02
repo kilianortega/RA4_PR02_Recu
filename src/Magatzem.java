@@ -1,5 +1,9 @@
 public class Magatzem {
     private Article[] articles;
+    
+    // PATRÓN: Replace Magic Number with Symbolic Constant
+    private static final int QUALITAT_MAXIMA = 50;
+    private static final int QUALITAT_MINIMA = 0;
 
     public Magatzem(Article[] articles) {
         this.articles = articles;
@@ -12,7 +16,6 @@ public class Magatzem {
     }
 
     private void actualitzarArticle(Article article) {
-        // PATRÓN: Replace Nested Conditional with Guard Clauses
         if (article.nom.equals("Martell de Thor (Llegendari)")) {
             return; 
         }
@@ -31,11 +34,11 @@ public class Magatzem {
                 break;
         }
 
-        if (article.qualitat > 50) article.qualitat = 50;
-        if (article.qualitat < 0) article.qualitat = 0;
+        // Usamos las constantes en vez de los números "mágicos" directos
+        if (article.qualitat > QUALITAT_MAXIMA) article.qualitat = QUALITAT_MAXIMA;
+        if (article.qualitat < QUALITAT_MINIMA) article.qualitat = QUALITAT_MINIMA;
     }
 
-    // PATRÓN: Extract Method (Métodos extraídos para limpiar el código)
     private void actualitzarFormatge(Article article) {
         article.qualitat++;
         if (article.diesPerVendre < 0) {
@@ -72,6 +75,5 @@ class Article {
         this.nom = nom;
         this.diesPerVendre = diesPerVendre;
         this.qualitat = qualitat;
-        
     }
 }
