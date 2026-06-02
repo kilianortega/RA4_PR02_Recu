@@ -34,7 +34,6 @@ public class Magatzem {
                 break;
         }
 
-        // Usamos las constantes en vez de los números "mágicos" directos
         if (article.qualitat > QUALITAT_MAXIMA) article.qualitat = QUALITAT_MAXIMA;
         if (article.qualitat < QUALITAT_MINIMA) article.qualitat = QUALITAT_MINIMA;
     }
